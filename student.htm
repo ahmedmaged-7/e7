@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+ function strip(string) {
+              return string.replace(/^\s+|\s+$/g, '');
+        }
+
+
+function validateForm() {
+// var letters =new RegExp( /^[A-Za-z]+$/)
+//letters.test("jahba5")
+//false
+    var re=new RegExp( /^[A-Za-z]+$/);
+  var x = document.forms["myForm"]["sname"].value;
+  console.log(x);
+  if (! re.test(strip(x)) ) {
+    alert(x);
+    return false;
+  }
+ x = document.forms["myForm"]["sid"].value;
+if (x.length !=7) {
+    alert("student id must be 7 characters ");
+    return false;
+  }
+}
+</script>
+</head>
+<body>
+
+
+
+
+
+
+
+<h>LMS</h>
+<p>STUDENT</p>
+<form name="myForm" action="/add_student" onsubmit="return validateForm()" method="post">
+Student Name: <input type="text" name="sname"><br>
+Student Code: <input type="text" name="sid"><br>
+<input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
+

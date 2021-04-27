@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function validateForm() {
+  var x = document.forms["myForm"]["cname"].value;
+  if (x.length <=3) {
+    alert("Course name must be bigger than 3");
+    return false;
+  }
+    x = document.forms["myForm"]["cid"].value;
+ var re=/[a-z][a-z][a-z]\d\d\d/i;
+
+if(!x.length ==6){
+if (!re.test(x)) {
+
+    alert("course code must have the   ");
+    return false;
+  }}
+
+}
+</script>
+</head>
+<body>
+
+
+<h>LMS</h>
+<p>Course</p>
+<form name="myForm" action="/addCourse" onsubmit="return validateForm()" method="post">
+Course Name: <input type="text" name="cname"><br>
+Course Code: <input type="text" name="cid"><br>
+           <textarea rows = "5" cols = "60" name = "describtion">description</textarea><br>
+
+
+<input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
+
