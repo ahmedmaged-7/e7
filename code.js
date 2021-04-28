@@ -218,7 +218,8 @@ res.send(JSON.stringify(data["student"+req.body.id]));
 
 
 
-var server =app.listen(8081,function(){ 
-var host =server.address().address 
-var port =server.address().port 
-console.log("Example app listening at http://%s:%s",host,port) })
+const PORT=process.env.PORT ||3000;
+const host="0.0.0.0";
+
+app.listen(PORT,host,()=>console.log("Example app listening at http://%s:%s",host,PORT) );
+
