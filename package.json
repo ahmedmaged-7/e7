@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "code.js",
   "scripts": {
-    "start": "code.js",
-    "test": "code.js"
+    "start": "node code.js",
+    "test": "node code.js"
   },
   "author": "",
   "license": "ISC",
