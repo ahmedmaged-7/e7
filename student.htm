@@ -11,11 +11,11 @@ function validateForm() {
 // var letters =new RegExp( /^[A-Za-z]+$/)
 //letters.test("jahba5")
 //false
-    var re=new RegExp( /^[A-Za-z]+$/);
+    var re=new RegExp( /^[A-Za-z\s]+$/);
   var x = document.forms["myForm"]["sname"].value;
   console.log(x);
   if (! re.test(strip(x)) ) {
-    alert(x);
+    alert("only letters are allowed");
     return false;
   }
  x = document.forms["myForm"]["sid"].value;
@@ -44,4 +44,3 @@ Student Code: <input type="text" name="sid"><br>
 
 </body>
 </html>
-
