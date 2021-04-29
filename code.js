@@ -29,7 +29,7 @@ function del_course(id){
 fs.readFile(__dirname +"/"+"course.json",'utf8',function(err,data){ 
 data =JSON.parse(data );
 delete data["course"+(id)]; 
-console.log(data ); 
+
 fs.writeFile(__dirname +"/"+"course.json",JSON.stringify( data), function (err) {
   if (err) throw err;
   console.log('Saved!');
@@ -42,9 +42,9 @@ function add_course(name,code,describtion){
 fs.readFile(__dirname +"/"+"course.json",'utf8',function(err,data){ 
 data =JSON.parse(data );
 var highest = data[ Object.keys(data).sort().pop() ];
-console.log(highest);
+
 var id = parseInt(highest.id);
-console.log(id);
+
 var course = { "Course_name":name, "Course_code":code,"describtion":describtion, "id":++id }  
 data["course"+(id)]=course; 
 data=(JSON.stringify(data) );
@@ -78,8 +78,8 @@ app.use(bp.urlencoded({ extended: true }))
 
 app.post('/addCourse',function(req,res){ 
 // First read existing users. 
-console.log(req.body.cname)
-console.log(req.body.cid)
+
+
 
 var a=add_course(req.body.cname,req.body.cid,req.body.describtion);
 res.sendFile(__dirname +"/"+"main.htm");
@@ -93,7 +93,7 @@ res.sendFile(__dirname +"/"+"main.htm");
 
 app.post('/delete_course',function(req,res){ // First read existing users. 
 var data=del_course(req.body.id);
-res.send(data); 
+res.sendFile(__dirname +"/"+"main.htm");
 }
 )
 app.use(bp.json())
@@ -105,7 +105,7 @@ app.use(bp.urlencoded({ extended: true }))
 app.get('/course_form',function(req,res){ res.sendFile(__dirname +"/"+"form.htm"); }) 
 app.get('/courses',function(req,res){ 
 var data =show_all();
-console.log(data);
+
 //console.log(JSON.stringify(data)); 
 res.send((data));
  }
@@ -126,7 +126,7 @@ function del_student(id){
 fs.readFile(__dirname +"/"+"student.json",'utf8',function(err,data){ 
 data =JSON.parse(data );
 delete data["student"+(id)]; 
-console.log(data ); 
+
 fs.writeFile(__dirname +"/"+"student.json",JSON.stringify( data), function (err) {
   if (err) throw err;
   console.log('Saved!');
@@ -138,7 +138,7 @@ return data;
 function add_student(name,code){
 fs.readFile(__dirname +"/"+"student.json",'utf8',function(err,data){ 
 data =JSON.parse(data );
-console.log(data);
+
 if (data==undefined || data=={}){
 var student = { "student_name":name, "student_code":code, "id":1}  
 data["student"+(id)]=student; 
@@ -146,9 +146,9 @@ data["student"+(id)]=student;
 else{
 
 var highest = data[ Object.keys(data).sort().pop() ];
-console.log(highest);
+
 var id = parseInt(highest.id);
-console.log(id);
+
 var student = { "student_name":name, "student_code":code, "id":++id }  
 data["student"+(id)]=student; 
 }
@@ -187,21 +187,21 @@ res.sendFile(__dirname +"/"+"main.htm");
  })
 
 app.post('/delete_student',function(req,res){ // First read existing users. 
-console.log("delete students"); 
+
 var data=del_student(req.body.id);
-res.send(data); 
+res.sendFile(__dirname +"/"+"main.htm");
 }
 )
 
 app.get('/studentform',function(req,res){ 
-console.log("students"); 
+
 
 res.sendFile(__dirname +"/"+"student.htm"); }) 
 
 app.get('/students',function(req,res){ 
-console.log("students"); 
+
 var data =Student_show_all();
-console.log(data);
+
 
 res.send((data));
  }
@@ -209,7 +209,7 @@ res.send((data));
 )
 
 app.post('/student/id',function(req,res){ // First read existing users.
-console.log("student id") ;
+
 var data=JSON.parse(Student_show_all());
 res.send(JSON.stringify(data["student"+req.body.id]));
   
@@ -218,8 +218,7 @@ res.send(JSON.stringify(data["student"+req.body.id]));
 
 
 
-const PORT=process.env.PORT ||3000;
-const host="0.0.0.0";
-
-app.listen(PORT,host,()=>console.log("Example app listening at http://%s:%s",host,PORT) );
-
+var server =app.listen(8081,function(){ 
+var host =server.address().address 
+var port =server.address().port 
+console.log("Example app listening at http://%s:%s",host,port) })
